@@ -6,6 +6,8 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const cors = require('cors');
 const passport= require('passport');
+const helmet= require('helmet');
+const compression = require('compression');
 
 const app = express();
 // Use connect method to connect to the server
@@ -20,6 +22,10 @@ mongoose
   .catch(err => {
     console.log(`DB Connection Error: ${err.message}`);
   });
+
+  app.use(helmet());
+  app.use(compression());
+  
 
   require('./passport/passport-local');
 
