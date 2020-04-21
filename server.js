@@ -52,10 +52,15 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+
 const user = require('./routes/userRoute');
+const company = require('./routes/companyRoute');
+const file = require('./routes/fileRoute');
 
 app.use('/api', user);
+app.use('/api', company);
+app.use('/api', file);
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log('Server running on port 3000');
 });
