@@ -99,7 +99,7 @@ exports.addEmployee = async (req, res) => {
 exports.search = async (req, res) => {
     const searchName = req.body.company;
     const regex = new RegExp(searchName, 'gi');
-    const company = await Company.find({"companyname": regex});
+    const company = await Company.find({"companyname": regex}).populate('rating.user');
 
     if(company.length > 0){
         return res.status(200).json({message: "Search Results", results: company});
